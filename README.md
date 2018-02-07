@@ -1,4 +1,4 @@
 # Deep Learning Notes
 
-Written by Mike Walczyk.
+View the full book at the following [URL](https://mwalczyk.gitbooks.io/deep-learning/content/).
 
