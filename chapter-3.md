@@ -16,7 +16,7 @@
 * For continuous variables, we use integration instead of summation.
 * In many cases, we are interested in the probability of some event, given that some other event has happened. This is called a  **conditional probability**. We denote the conditional probability that $$y =\textit{y}$$ given $$x = \textit{x}$$ as $$P(y = \textit{y} | x = \textit{x})$$.
 * [Conditional probability explained visually](http://setosa.io/conditional/).
-* [Why do we divide by](https://people.richland.edu/james/lecture/m170/ch05-cnd.html)[ $$P\(x = \textit{x}\)$$](https://people.richland.edu/james/lecture/m170/ch05-cnd.html)[ in the formula for conditional probability?](https://people.richland.edu/james/lecture/m170/ch05-cnd.html)
+* [Why do we divide by](https://people.richland.edu/james/lecture/m170/ch05-cnd.html)[ $$P(x = \textit{x})$$](https://people.richland.edu/james/lecture/m170/ch05-cnd.html)[ in the formula for conditional probability?](https://people.richland.edu/james/lecture/m170/ch05-cnd.html)
 * [Conditional probability explained with Venn diagrams](https://www.probabilitycourse.com/chapter1/1_4_0_conditional_probability.php).
 * Any joint probability distribution over many random variables may be decomposed into conditional distributions over only one variable.
 * Two random variables $$x$$ and $$y$$ are **independent** if their probability distribution can be expressed as the product of two factors, one involving only $$x$$ and one involving only $$y$$. In other words, $$p(x = \textit{x}, y = \textit{y}) = p(x = \textit{x})p(y = \textit{y})$$.
