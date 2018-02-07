@@ -1,6 +1,6 @@
 # Linear Algebra
 
-* $$$$The element-wise product of two matrices is known as the **Hadamard product**.
+* The element-wise product of two matrices is known as the **Hadamard product**.
 * A system of linear equations is $$Ax = b$$.
 * If we know the inverse of the matrix $$A$$, we can solve for $$x$$. Note that in practice, we usually do _not _ use $$A^{-1}$$ to solve for $$b$$. This is because the inverse of a matrix can be represented with only limited precision on a digital computer. Algorithms that make use of the value of $$b$$ can usually obtain a more accurate estimate of $$x$$.
 * In order for $$A^{-1}$$ to exist, the system of linear equations must have exactly one solution for every value of $$b$$. Determining whether $$Ax = b$$ has a solution amounts to testing whether bis in the span of the columns of $$A$$. 
