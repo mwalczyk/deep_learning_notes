@@ -1,9 +1,6 @@
 # Linear Algebra
 
-* $$\usepackage{sansmath}$$
-
-The element-wise product of two matrices is known as the Hadamard product.
-
+* $$$$The element-wise product of two matrices is known as the **Hadamard product**.
 * A system of linear equations is $$Ax = b$$.
 * If we know the inverse of the matrix $$A$$, we can solve for $$x$$. Note that in practice, we usually do _not _ use $$A^{-1}$$ to solve for $$b$$. This is because the inverse of a matrix can be represented with only limited precision on a digital computer. Algorithms that make use of the value of $$b$$ can usually obtain a more accurate estimate of $$x$$.
 * In order for $$A^{-1}$$ to exist, the system of linear equations must have exactly one solution for every value of $$b$$. Determining whether $$Ax = b$$ has a solution amounts to testing whether bis in the span of the columns of $$A$$. 
@@ -40,11 +37,9 @@ The element-wise product of two matrices is known as the Hadamard product.
   * **Positive** **semidefinite**: all eigenvalues are positive or zero
   * **Negative definite**: all eigenvalues are negative
   * **Negative semidefinite**: all eigenvalues are negative or zero
-* The **singular value decomposition** \(SVD\) provides another way to factorize a matrix into singular vectors and singular values. Every real matrix has a SVD, even non-square matrices. It is written as the product of three matrices: 
+* The **singular value decomposition** \(SVD\) provides another way to factorize a matrix into singular vectors and singular values. Every real matrix has a SVD, even non-square matrices. It is written as the product of three matrices: $$A = UDV^{T}$$.
 * If $$A$$ is $$m\times n$$, then $$U$$ is $$m\times m$$, $$D$$ is $$m\times n$$, and $$V$$ is $$n\times n$$. $$U$$ and $$V$$ are both orthogonal. $$D$$ is diagonal and not necessarily square. The elements of $$D$$ are known as the singular values of the matrix $$A$$. The SVD can be used to generalize matrix inversion to non-square matrices.
-
 * [Understanding singular value decomposition](http://www.ams.org/samplings/feature-column/fcarc-svd).
-
 * The SVD can be used for things like data compression and noise reduction. In a way, the SVD discovers redundancy in a matrix and provides a format for eliminating it. The number of non-zero singular values equals the rank of the matrix. Remember that the rank of a matrix denotes the number of linearly independent columns.
 * The **Moore-Penrose Pseudoinverse** gives us a way to solve a system of linear equations $$Ax = b$$ when $$A$$ is non-square \(and therefore, not directly invertible\).
 * The **trace** operator gives the sum of all of the diagonal entries of a matrix.
