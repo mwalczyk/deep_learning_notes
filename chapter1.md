@@ -1,3 +1,10 @@
+---
+plugins:
+  - autocover
+  - mathjax
+pluginsConfig: {}
+---
+
 # Linear Algebra
 
 * The element-wise product of two matrices is known as the **Hadamard product**.
@@ -44,6 +51,4 @@
 * The **Moore-Penrose Pseudoinverse** gives us a way to solve a system of linear equations $$Ax = b$$ when $$A$$ is non-square \(and therefore, not directly invertible\).
 * The **trace** operator gives the sum of all of the diagonal entries of a matrix.
 * The **determinant ** of a square matrix is a function mapping matrices to real scalars. It is equal to the product of all of the eigenvalues of the matrix \(the area of the parallelogram spanned by the eigenvectors of the matrix\). The absolute value of the determinant can be thought of as a measure of how much multiplication by the matrix expands or contracts space.
-
-
 
