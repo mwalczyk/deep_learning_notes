@@ -1,3 +1,6 @@
+
+---
+
 # Probability and Information Theory
 
 * In many scenarios, it is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the fidelity to accommodate a complex rule \("most birds fly" versus "birds fly, except for very young birds, sick or injured birds, flightless birds..." etc.\).
