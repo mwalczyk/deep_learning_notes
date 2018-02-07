@@ -1,10 +1,3 @@
----
-plugins:
-  - autocover
-  - mathjax
-pluginsConfig: {}
----
-
 # Linear Algebra
 
 * The element-wise product of two matrices is known as the **Hadamard product**.
