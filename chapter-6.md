@@ -63,13 +63,7 @@
 
 ![](/assets/activation_functions.png)
 
-
-
-
-
-
-
-
-
+* The word **architecture** refers to the overall structure of the network: how many units it should have and how these units should be connected to each other.
+* 
 
 
