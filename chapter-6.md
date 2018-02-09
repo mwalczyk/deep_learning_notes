@@ -52,6 +52,20 @@
 * There are many different types of hidden units:
   * **Rectified linear unit**: this unit is typically used on top of an affine transformation $$h = g(W^{T}x + b)$$. When initializing the parameters of the transformation, it is good practice to set all elements of $$b$$ to a small positive value, such as 0.1. Doing so makes it very likely that the ReLU will be initially active for most inputs in the training set. One drawback to ReLUs is that they cannot learn via gradient-based methods on examples for which their activation is zero. The **leaky ReLU** or **parametric ReLU** variations attempt to fix this. 
   * **Maxout unit**: this unit generalizes the ReLU by dividing $$z$$ into groups of $$k$$ values. Each maxout unit then outputs the maximum element of one of these groups. This provides a way of learning a piecewise linear function that responds to multiple directions in the input $$x$$ space.
+    * When $$k = 2$$, a maxout neuron computes the function $$\max(w_{1}^{T}x + b_{1}, w_{2}^{T} + b_{2})$$.
+    * Both ReLU and leaky ReLU are a special case of this form. For example, a ReLU sets $$w_{1} = b_{1} = 0$$.
+    * A maxout neuron enjoys all of the benefits of a ReLU unit and does not have its drawbacks \(dead ReLUs\). However, using maxout neurons _doubles_ the number of parameters needed for every single neuron.
+  * **Sigmoid and hyperbolic tangent units**: these units compute $$\sigma(z)$$ and $$\tanh(z)$$, respectively. Their use as hidden units in feedforward networks is discouraged because they can lead to poor training dynamics. Sigmoidal activation functions are more common in recurrent networks, probabilistic models, and autoencoders, which have additional requirements that rule out the use of piecewise linear activation functions.
+  * **Other hidden units**: softmax units are usually used as an output unit but may sometimes be used as a hidden unit. They can be interpretted as a kind of "switch." A few other common hidden unit types include:
+    * Radial basis function 
+    * Softplus
+    * Hard tanh
+
+    ![](/assets/activation_functions.png)
+    * ![](/assets/activation_functions.png)
+    * ![](/assets/activation_functions.png)
+    * ![](/assets/activation_functions.png)
+    * ![](/assets/activation_functions.png)
 
 
 
