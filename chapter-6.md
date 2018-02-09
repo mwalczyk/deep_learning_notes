@@ -61,11 +61,15 @@
     * Softplus
     * Hard tanh
 
-    ![](/assets/activation_functions.png)
-    * ![](/assets/activation_functions.png)
-    * ![](/assets/activation_functions.png)
-    * ![](/assets/activation_functions.png)
-    * ![](/assets/activation_functions.png)
+![](/assets/activation_functions.png)
+
+
+
+
+
+
+
+
 
 
 
