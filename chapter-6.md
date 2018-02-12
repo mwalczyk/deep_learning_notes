@@ -65,12 +65,18 @@
 
 * The word **architecture** refers to the overall structure of the network: how many units it should have and how these units should be connected to each other.
 * The **universal approximation theorem **states that a feedforward network with a linear output layer and at least one hidden layer with any activation function can approximate any continous function on a closed and bounded subset of $$R^{n}$$ with any desired nonzero amount of error, provided that the network is given enough hidden units. A proof of this theorem can be found in the following blog [post](http://mcneela.github.io/machine_learning/2017/03/21/Universal-Approximation-Theorem.html).
-* Even though this theorem means that a network _can_ \(in theory\) represent any function that we are trying to learn, this doesn't mean that it _will _in practice. Learning can fail for two reasons:
+* Even though this theorem means that a network _can_ \(in theory\) represent any function that we are trying to learn, this doesn't mean that it \_will \_in practice. Learning can fail for two reasons:
   * The optimization algorithm used for training may not be able to find the value of the parameters that corresponds to the desired function.
   * The training algorithm might choose the wrong function as a result of overfitting.
 * In many circumstances, using a deeper model can reduce the number of units required to represent the desired function and reduce the amount of generalization error.
 
 > Choosing a deep model encodes a very general belief that the function we want to learn should involve the composition of several simpler functions. This can be interpreted from a representation learning point of view as saying that we believe that the learning problem consists of discovering a set of underlying factors of variation that can, in turn, be described in terms of other, simpler underlying factors of variation.
+
+* The term **back-propagation **is often misunderstood as meaning the _whole _learning algorithm for multi-layer neural networks. Actually, back-propagation refers only to the method for computing the gradient, while another algorithm \(like SGD\) is used to perform learning using this gradient.
+* To facillitate back-propagation, we use the notion of a **computational graph**, where each node represents either: 
+  * A variable \(scalar, vector, matrix, tensor, or otherwise\).
+  * An operation \(function of one or more variables\).
+* Back-propagation is a highly efficient algorithm that computes the **chain rule** of calculus with a specific order of operations. The chain rule states that for a real number $$x$$ and two functions $$y = g(x)$$ and $$z = f(g(x)) = f(y)$$, the derivative of $$z$$ with respect to $$x$$ is: $$\frac{dz}{dx} = \frac{dz}{dy}\frac{dy}{dx}$$. The chain rule is explained in detail in the following Khan Academy [article](https://www.khanacademy.org/math/differential-calculus/product-quotient-chain-rules-dc/chain-rule-dc/a/chain-rule-review).
 
 * 
 
