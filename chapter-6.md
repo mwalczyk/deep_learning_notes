@@ -72,12 +72,15 @@
 
 > Choosing a deep model encodes a very general belief that the function we want to learn should involve the composition of several simpler functions. This can be interpreted from a representation learning point of view as saying that we believe that the learning problem consists of discovering a set of underlying factors of variation that can, in turn, be described in terms of other, simpler underlying factors of variation.
 
-* The term **back-propagation **is often misunderstood as meaning the _whole _learning algorithm for multi-layer neural networks. Actually, back-propagation refers only to the method for computing the gradient, while another algorithm \(like SGD\) is used to perform learning using this gradient.
+* The term **back-propagation **is often misunderstood as meaning the \_whole \_learning algorithm for multi-layer neural networks. Actually, back-propagation refers only to the method for computing the gradient, while another algorithm \(like SGD\) is used to perform learning using this gradient.
 * To facillitate back-propagation, we use the notion of a **computational graph**, where each node represents either: 
   * A variable \(scalar, vector, matrix, tensor, or otherwise\).
   * An operation \(function of one or more variables\).
-* Back-propagation is a highly efficient algorithm that computes the **chain rule** of calculus with a specific order of operations. The chain rule states that for a real number $$x$$ and two functions $$y = g(x)$$ and $$z = f(g(x)) = f(y)$$, the derivative of $$z$$ with respect to $$x$$ is: $$\frac{dz}{dx} = \frac{dz}{dy}\frac{dy}{dx}$$. The chain rule is explained in detail in the following Khan Academy [article](https://www.khanacademy.org/math/differential-calculus/product-quotient-chain-rules-dc/chain-rule-dc/a/chain-rule-review).
 
-* 
+* Back-propagation is a highly efficient algorithm that computes the **chain rule** of calculus with a specific order of operations. The chain rule states that for a real number $$x$$ and two functions $$y = g(x)$$ and $$z = f(g(x)) = f(y)$$, the derivative of $$z$$ with respect to $$x$$ is: $$\frac{dz}{dx} = \frac{dz}{dy}\frac{dy}{dx}$$. The chain rule is explained in detail in the following Khan Academy [article](https://www.khanacademy.org/math/differential-calculus/product-quotient-chain-rules-dc/chain-rule-dc/a/chain-rule-review).
+* We can generalize the chain rule beyond the scalar case. Suppose that $$x\in R^{m}$$ and $$y\in R^{n}$$. Let $$g$$ be an intermediate function that maps from $$R^{m}$$ to $$R^{n}$$. Finally, let $$f$$ be a function that maps from $$R^{n}$$ to $$R$$. The gradient of $$z$$ with respect to $$x$$ can be written as the product of a Jacobian matrix $$\frac{dy}{dx}$$ and a gradient $$\bigtriangledown_{y}z$$. The back-propagation algorithm consists of performing such a Jacobian-gradient product for each operation in the graph.
+* Usually we apply the back-propagation algorithm to tensors of arbitrary dimensionality, not just vectors. Conceptually, this is the exact same. The only difference is how the numbers are arranged in a grid to form a tensor. We could imagine flattening each tensor into a vector before we run back-propagation, computing a vector-valued gradient, and then reshaping the gradient back into a tensor. In this view, back-propagation is still just multiplying Jacobians by gradients.
+* Computation graphs are explained in detail in the following blog [post](http://colah.github.io/posts/2015-08-Backprop/) and on the [course website](http://cs231n.github.io/optimization-2/#backprop) for Stanford's CS231n.
+
 
 
