@@ -74,34 +74,21 @@
 
 * The term **back-propagation **is often misunderstood as meaning the \_whole \_learning algorithm for multi-layer neural networks. Actually, back-propagation refers only to the method for computing the gradient, while another algorithm \(like SGD\) is used to perform learning using this gradient.
 * To facillitate back-propagation, we use the notion of a **computational graph**, where each node represents either:
-
   * A variable \(scalar, vector, matrix, tensor, or otherwise\).
   * An operation \(function of one or more variables\).
-
 * Back-propagation is a highly efficient algorithm that computes the **chain rule** of calculus with a specific order of operations. The chain rule states that for a real number $$x$$ and two functions $$y = g(x)$$ and $$z = f(g(x)) = f(y)$$, the derivative of $$z$$ with respect to $$x$$ is: $$\frac{dz}{dx} = \frac{dz}{dy}\frac{dy}{dx}$$. The chain rule is explained in detail in the following Khan Academy [article](https://www.khanacademy.org/math/differential-calculus/product-quotient-chain-rules-dc/chain-rule-dc/a/chain-rule-review).
-
 * We can generalize the chain rule beyond the scalar case. Suppose that $$x\in R^{m}$$ and $$y\in R^{n}$$. Let $$g$$ be an intermediate function that maps from $$R^{m}$$ to $$R^{n}$$. Finally, let $$f$$ be a function that maps from $$R^{n}$$ to $$R$$. The gradient of $$z$$ with respect to $$x$$ can be written as the product of a Jacobian matrix $$\frac{dy}{dx}$$ and a gradient $$\bigtriangledown_{y}z$$. The back-propagation algorithm consists of performing such a Jacobian-gradient product for each operation in the graph.
 * Usually we apply the back-propagation algorithm to tensors of arbitrary dimensionality, not just vectors. Conceptually, this is the exact same. The only difference is how the numbers are arranged in a grid to form a tensor. We could imagine flattening each tensor into a vector before we run back-propagation, computing a vector-valued gradient, and then reshaping the gradient back into a tensor. In this view, back-propagation is still just multiplying Jacobians by gradients.
 * Computation graphs are explained in detail in the following blog [post](http://colah.github.io/posts/2015-08-Backprop/) and on the [course website](http://cs231n.github.io/optimization-2/#backprop) for Stanford's CS231n. In particular, there are two ways of calculating derivatives on computational graphs:
   * **Forward-mode** differentiation tracks how one _input_ affects every node by applying the operator $$\frac{\partial}{\partial{X}}$$ to every node for some input $$X$$.
   * **Reverse-mode** differentiation tracks how every node affects one _output_ by applying the operator $$\frac{\partial{Z}}{\partial}$$ to every node. The advantage of reverse-mode differentiation is that it gives us the derivative of some output $$Z$$ with respect to _every node_. This means that we can calculate all of the partial derivatives necessary for back-propagation in one pass.
-  * Both modes involve "factoring" the edges of the graph, so as to avoid the combinatorial explosion in the number of possible paths. An example of forward-mode differentiation \(from node $$b$$ upwards\) can be seen in the image below.
+* Both modes involve "factoring" the edges of the graph, so as to avoid the combinatorial explosion in the number of possible paths. An example of forward-mode differentiation \(from node $$b$$ upwards\) can be seen in the image below.
 
-  ![](/assets/forward_mode_differentiation.png)
+![](/assets/forward_mode_differentiation.png)
 
-* Computational graphs operate on **symbols**, or variables that do not have specific values. These algebraic and graph-based representations are called **symbolic representations**. When we actually use or train a neural network, we must assign specific values to these symbols. We replace a symbolic input to the network $$x$$ with a specific numeric value, such as $$[1, 2, 3]^{T}$$. Some approaches to back-propagation take a computational graph and a set of numerical values for the inputs to the graph, then return a set of numerical values describing the gradient at those input values. We call this approach **symbol-to-number** differentiation. 
+* Computational graphs operate on **symbols**, or variables that do not have specific values. These algebraic and graph-based representations are called **symbolic representations**. When we actually use or train a neural network, we must assign specific values to these symbols. We replace a symbolic input to the network $$x$$ with a specific numeric value, such as $$[1, 2, 3]^{T}$$. Some approaches to back-propagation take a computational graph and a set of numerical values for the inputs to the graph, then return a set of numerical values describing the gradient at those input values. We call this approach **symbol-to-number** differentiation.
 * Another approach is to take a computational graph and add addtional nodes to the graph that provide a symbolic description of the desired derivatives. This is the approach taken by Theano and TensorFlow and is known as **symbol-to-symbol** differentiation. The advantage here is that the derivatives are described in the same language as the original expression. Any subset of the graph can be evaluated using specific numerical values at a later time. 
 * 
-
-
-
-
-
-
-
-
-
-
 
 
 
