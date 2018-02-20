@@ -4,16 +4,16 @@
 * **Linear models** \(such as logistic regression and linear regression\) have the obvious defect that the model capacity is limited to linear functions, so the model cannot understand the interaction between any two input variables. To extend linear models to represent non-linear functions of $$x$$, we can apply the linear model not to $$x$$ itself but to a transformed input $$\phi(x)$$, where $$\phi$$ is a non-linear transform. We can think of $$\phi$$ as providing a new representation for $$x$$.
 * The excerpt below explains why a simple linear model cannot solve the XOR problem, which serves as the motivation for non-linear activation functions in deep feedforward networks:
 
-![](https://www.evernote.com/shard/s463/res/c422c35f-b6c3-4910-b71d-9a4d83374928/Capture.PNG)
+![](/assets/xor_problem.PNG)
 
 * In modern neural networks, the default recommendation is to use the **rectified linear unit**, or ReLU, defined by the activation function $$g(z) = \max (0, z)$$.
   * [How is the ReLU activation function able to approximate non-linear functions?](https://stats.stackexchange.com/questions/299915/how-does-the-rectified-linear-unit-relu-activation-function-produce-non-linear)
   * Suppose we want to approximate the function $$f(x) = x^{2}$$ using ReLUs $$g(ax + b)$$. One approximation might look like $$h_{1}(x) = g(x) + g(-x) = |x|$$. This is shown in the first graph below.
   * This obviously isn't a very good approximation. We can add more terms to improve the approximation, like: $$h_{2}(x) = g(x) + g(-x) + g(2x - 2) + g(-2x + 2)$$. This is shown in the second graph below.
 
-![](https://www.evernote.com/shard/s463/res/9cda5bde-81dc-4f9d-bb7f-90fe8a3bc5dc.png "https://i.stack.imgur.com/R14EO.png")
+![](/assets/relu_a.png "https://i.stack.imgur.com/R14EO.png")
 
-![](https://www.evernote.com/shard/s463/res/45505ccc-69e1-4ce4-9b70-ffb6a9b55eea.png "https://i.stack.imgur.com/GUDKV.png")
+![](/assets/relu_b.png "https://i.stack.imgur.com/GUDKV.png")
 
 * The largest difference between the linear models we have seen so far and neural networks is that the non-linearity of a neural network causes most interesting loss functions to become non-convex. This means that neural networks are usually trained by driving the cost function to a very low value rather than an absolute global minimum.
 * Most modern neural networks are trained using maximum likelihood. This means that the cost function is simply the negative log-likelihood, equivalently described as the cross-entropy between the training data and the model distribution.
