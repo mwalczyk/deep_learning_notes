@@ -1,6 +1,3 @@
-
----
-
 # Probability and Information Theory
 
 * In many scenarios, it is more practical to use a simple but uncertain rule rather than a complex but certain one, even if the true rule is deterministic and our modeling system has the fidelity to accommodate a complex rule \("most birds fly" versus "birds fly, except for very young birds, sick or injured birds, flightless birds..." etc.\).
@@ -14,7 +11,7 @@
 * Sometimes we know the probability distribution over a set of variables, and we want to know the probability distribution over just a subset of them. This is known as the **marginal probability distribution**. For example, if we know 
   $$P(x, y)$$, we can find $$P(x)$$ by summing up $$P(x = \textit{x}, y = \textit{y})$$ for all values of $$y$$. 
 
-![](https://www.evernote.com/shard/s463/res/4d0bd4a1-0e61-471d-a5ed-3f6c6e7850b4/chapt-4gbu-17-638.jpg)
+![](/assets/marginal_probabilities.jpg)
 
 * For continuous variables, we use integration instead of summation.
 * In many cases, we are interested in the probability of some event, given that some other event has happened. This is called a  **conditional probability**. We denote the conditional probability that $$y =\textit{y}$$ given $$x = \textit{x}$$ as $$P(y = \textit{y}\mid x = \textit{x})$$.
@@ -49,7 +46,7 @@
   * Independent events should have additive information.
 * The **self-information** of an event $$x = \textit{x}$$ is $$I(x) = -\log P(x)$$. Note that $$\log$$ is the natural logarithm \(base $$e$$\). See the graph of $$-\log (x)$$ below. Note how events that are more likely having smaller values for $$I(x)$$:
 
-![](https://www.evernote.com/shard/s463/res/3988e291-d759-40a8-9367-f94a375fa2cf/Capture.PNG)
+![](/assets/logx.png)
 
 * In the function $$I(x)$$ above, we refer to the units as **nats**: one nat is the amount of information gained by observing an event of probability $$1/e$$.
 * The amount of uncertainty in an entire probability distribution is referred to as the **Shannon entropy**, which is the expected value of $$I(x)$$. It is usually denoted $$H(P)$$. It gives a lower bound on the number of bits needed on average to encode symbols drawn from a distribution $$P$$. Distributions that are nearly deterministic \(where the outcome is nearly certain\) have low entropy and vice-versa.
@@ -60,5 +57,5 @@
   * **Bayesian** \(directed\)
   * **Markov** \(undirected\)
 
-![](https://www.evernote.com/shard/s463/res/e7e3ca83-2682-460b-b0c2-16ef761f62cb/IxBsA.png)
+![](/assets/pgm.png)
 
