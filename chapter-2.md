@@ -30,7 +30,7 @@
 * [Eigenvectors and eigenvalues explained visually.](http://setosa.io/ev/eigenvectors-and-eigenvalues/)
 * Note that rotation matrices have no eigenvectors or eigenvalues, since they simply rotate space. There are no transformed points that are along their original line through the origin. Also, note that the eigenvectors of a symmetric matrix corresponding to different eigenvalues are always orthogonal. Put another way, it turns out that we may always rotate the Cartesian plane in the domain such that a symmetric matrix acts by stretching \(and perhaps reflecting\) in two orthogonal directions. This is pictured below:
 
-![](https://www.evernote.com/shard/s463/res/97c8a0b5-8d99-4107-b35b-146c8b725fae/Capture.PNG)
+![](/assets/svd.png)
 
 * The sign of the eigenvalues of a matrix can be used to classify it into one of four categories: a matrix is said to be positive semidefinite when it can be obtained as the product of a matrix by its transpose. This implies that a positive semidefinite matrix is _always_ symmetric. This family of matrices includes correlation, covariance, and cross-product matrices. Positive semidefinite matrices are interesting because $$x^{T}Ax$$_** **_ is guaranteed to be greater than or equal to zero. Intuitively, this means that the mapped vector does not "go in the other direction" from the original.
   * **Positive definite**: all eigenvalues are positive
@@ -44,4 +44,6 @@
 * The **Moore-Penrose Pseudoinverse** gives us a way to solve a system of linear equations $$Ax = b$$ when $$A$$ is non-square \(and therefore, not directly invertible\).
 * The **trace** operator gives the sum of all of the diagonal entries of a matrix.
 * The **determinant ** of a square matrix is a function mapping matrices to real scalars. It is equal to the product of all of the eigenvalues of the matrix \(the area of the parallelogram spanned by the eigenvectors of the matrix\). The absolute value of the determinant can be thought of as a measure of how much multiplication by the matrix expands or contracts space.
+
+
 
