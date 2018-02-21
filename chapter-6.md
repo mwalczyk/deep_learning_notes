@@ -95,6 +95,10 @@
 > For any node that may be reached by going backward from $$z$$ through two or more paths, we simply sum the gradients arriving from different paths at that node.
 
 * The computational graph API:
-
+  * `get_operation`: returns the operation that computes $$V$$
+  * `get_consumers`: returns the list of variables that are children of $$V$$ in the graph
+  * `get_inputs`: returns the list of variables that are parents of $$V$$ in the graph
+* Each operation is also associated with a `bprop` operation that computes a Jacobian-vector product, as discussed earlier. This method should _always_ pretend that all inputs are distinct, even if they are not. For example, if the `mul` operator is passed two copies of $$x$$ to compute $$x^{2}$$, the `bprop` method should still return $$x$$ as the derivative with respect to both inputs. The back-propagation algorithm will later add both of these arguments together to obtain $$2x$$, which is the correct total derivative on $$x$$.
+* 
 
 
