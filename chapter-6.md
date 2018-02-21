@@ -98,7 +98,10 @@
   * `get_operation`: returns the operation that computes $$V$$
   * `get_consumers`: returns the list of variables that are children of $$V$$ in the graph
   * `get_inputs`: returns the list of variables that are parents of $$V$$ in the graph
+
 * Each operation is also associated with a `bprop` operation that computes a Jacobian-vector product, as discussed earlier. This method should _always_ pretend that all inputs are distinct, even if they are not. For example, if the `mul` operator is passed two copies of $$x$$ to compute $$x^{2}$$, the `bprop` method should still return $$x$$ as the derivative with respect to both inputs. The back-propagation algorithm will later add both of these arguments together to obtain $$2x$$, which is the correct total derivative on $$x$$.
-* 
+* The field of **automatic differentiation **is concerned with how to compute derivatives algorithmically. Back-propagation is only one approach to automatic differentiation. It is a special case of a broader class of techniques called **reverse mode accumulation**. 
+* The cost of training can be reduced by simplifying the computational graph constructed by back-propagation. Implementations such as Theano and TensorFlow use heuristics based on matching known simplification patterns to iteratively simplify the graph.
+
 
 
