@@ -101,6 +101,13 @@
 * Each operation is also associated with a `bprop` operation that computes a Jacobian-vector product, as discussed earlier. This method should _always_ pretend that all inputs are distinct, even if they are not. For example, if the `mul` operator is passed two copies of $$x$$ to compute $$x^{2}$$, the `bprop` method should still return $$x$$ as the derivative with respect to both inputs. The back-propagation algorithm will later add both of these arguments together to obtain $$2x$$, which is the correct total derivative on $$x$$.
 * The field of **automatic differentiation **is concerned with how to compute derivatives algorithmically. Back-propagation is only one approach to automatic differentiation. It is a special case of a broader class of techniques called **reverse mode accumulation**. 
 * The cost of training can be reduced by simplifying the computational graph constructed by back-propagation. Implementations such as Theano and TensorFlow use heuristics based on matching known simplification patterns to iteratively simplify the graph.
-* 
+* When the number of outputs of the graph is larger than the number of inputs, it is sometimes preferable to use another form of automatic differentiation called **forward mode accumulation**. This approach avoids the need to store the values and gradients for the whole graph.
+* Reverse mode and forward mode differentiation are covered in Colah's blog post above as well as in the following [article](https://rufflewind.com/2016-12-30/reverse-mode-automatic-differentiation), which contains a basic implementation of forward mode accumulation in `Python` and `Rust`. The biggest takeaway is:
+
+> In forward-mode automatic differentiation, we have to run through the _entire _graph for each parameter whose gradient we wish to compute. In effect, the cost of this method scales linearly as `O(n)` where `n` is the number of input variables.
+
+* In the deep learning community, computational graphs are usually represented by explicit data structures created by specialized libraries. This approach has the drawback of requiring the library developer to define the `bprop` method for every operation and thus, limiting the user to only those operations that have been defined. However, this approach has the benefit of allowing customized back-propagation rules to be developed for each operation, enabling the developer to improve speed and/or stability.
+* In typical deep learning applications, it is infeasible to compute \(or even represent\) the entire Hessian matrix of second derivatives. Instead, a more common approach is to use **Krylov methods**, which are a set of iterative techniques for performing various operations such as approximately inverting a matrix.
+
 
 
