@@ -21,6 +21,8 @@ $$\widetilde{J}(\theta ; X, y) = J(\theta ; X, y) + \alpha \Omega (\theta)$$
   * This changes the **normal equations** for the solution from $$w = (X^{T}X)^{-1}X^{T}y$$ to $$w = (X^{T}X + \alpha I)^{-1}X^{T}y$$. 
   * The matrix $$X^{T}X$$ is proportional to the covariance matrix $$\frac{1}{m}X^{T}X$$. This follows from the fact that if the vectors \(i.e. rows of $$X$$\) are centered random variables, then the [Gram matrix](https://en.wikipedia.org/wiki/Gramian_matrix) \(which is $$X^{T}X$$\) is approximately proportional to the covariance matrix, with the scaling determined by the number of elements in the vector \(which is $$m$$\).
   * The new matrix in the parenthesis is the same as the original one but with the addition of $$\alpha$$ to the diagonal. The diagonal entries of this matrix correspond to the variance of each input feature. We can see that $$L^{2}$$ regularization causes the learning algorithm to "perceive" the input $$X$$ as having higher variance, which makes it shrink the weights on features whose covariance with the output target is low compared to this added variance. 
-
+* In comparison to $$L^{2}$$ regularization, $$L^{1}$$ regularization results in a solution that is more **sparse**. Sparsity in this context refers to the fact that some parameters have an optimal value of zero. An explanation of why $$L^{1}$$ regularization is sparsity inducing can be found in the following [post](https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models).
+  > $$L^{1}$$ regularization will move any weight towards 0 with the same step size, regardless of the weight's value. In contrast, $$L^{2}$$ regularization will also move any weight towards 0, but it will take smaller and smaller steps as the weight's value approaches 0.
+* 
 
 
