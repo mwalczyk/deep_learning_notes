@@ -15,14 +15,27 @@ $$\widetilde{J}(\theta ; X, y) = J(\theta ; X, y) + \alpha \Omega (\theta)$$
 
 ![](/assets/weight_decay.png)
 
-* Only directions along which the parameters contribute significantly to reducing the objective function are preserved relatively intact. In directions that do not contribute to reducing the objective function, a small eigenvalue of the Hessian tells us that movement in this direction will not significantly increase the gradient. Components of the weight vector corresponding to such unimportant directions are decayed away through the use of the regularization throughout training.
+* Only directions along which the parameters contribute significantly to reducing the objective function are preserved relatively intact. In directions that do not contribute to reducing the objective function, a small eigenvalue of the Hessian tells us that movement in this direction will not significantly increase the gradient. Components o the weight vector corresponding to such unimportant directions are decayed away through the use of the regularization throughout training.
 * We can also study the effect of $$L^{2}$$ regularization on a simple model like linear regression. 
   * The cost function with regularization can be written as $$(Xw - y)^{T}(Xw - y) + \frac{1}{2}\alpha w^{T}w$$, where $$X$$ is the training data. 
   * This changes the **normal equations** for the solution from $$w = (X^{T}X)^{-1}X^{T}y$$ to $$w = (X^{T}X + \alpha I)^{-1}X^{T}y$$. 
   * The matrix $$X^{T}X$$ is proportional to the covariance matrix $$\frac{1}{m}X^{T}X$$. This follows from the fact that if the vectors \(i.e. rows of $$X$$\) are centered random variables, then the [Gram matrix](https://en.wikipedia.org/wiki/Gramian_matrix) \(which is $$X^{T}X$$\) is approximately proportional to the covariance matrix, with the scaling determined by the number of elements in the vector \(which is $$m$$\).
   * The new matrix in the parenthesis is the same as the original one but with the addition of $$\alpha$$ to the diagonal. The diagonal entries of this matrix correspond to the variance of each input feature. We can see that $$L^{2}$$ regularization causes the learning algorithm to "perceive" the input $$X$$ as having higher variance, which makes it shrink the weights on features whose covariance with the output target is low compared to this added variance. 
 * In comparison to $$L^{2}$$ regularization, $$L^{1}$$ regularization results in a solution that is more **sparse**. Sparsity in this context refers to the fact that some parameters have an optimal value of zero. An explanation of why $$L^{1}$$ regularization is sparsity inducing can be found in the following [post](https://stats.stackexchange.com/questions/45643/why-l1-norm-for-sparse-models).
-  > $$L^{1}$$ regularization will move any weight towards 0 with the same step size, regardless of the weight's value. In contrast, $$L^{2}$$ regularization will also move any weight towards 0, but it will take smaller and smaller steps as the weight's value approaches 0.
+
+> $$L^{1}$$ regularization will move any weight towards 0 with the same step size, regardless of the weight's value. In contrast, $$L^{2}$$ regularization will also move any weight towards 0, but it will take smaller and smaller steps as the weight's value approaches 0.
+
+* In this section, the author makes use of a quadratic approximation to the objective function. This is a **second-order **[Taylor series approximation](http://www.math.ucdenver.edu/~esulliva/Calculus3/Taylor.pdf), in the multivariable case. Using a Taylor series, we can approximate a function around the neighborhood of some point $$a$$ \(in the scalar case\). If we are dealing with some multivariable function $$f(x, y)$$, we could form a second-order approximation of $$f$$ around some point $$(a, b)$$ as follows:
+
+$$f(x, y) = f(a, b) + f_{x}(a, b)(x - a) + f_{y}(a, b)(y - b) + \frac{1}{2}[f_{xx}(a, b)(x - a)^{2} + 2f_{xy}(a, b)(x - a)(y - b) + f_{yy}(y - b)^{2}]$$
+
+* If we now let $$x = \langle x, y\rangle$$ and $$a = \langle a, b\rangle$$, this can be written more compactly as:
+
+$$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] + \frac{1}{2}[(x - a)\cdot (H(x)\cdot (x - a))]$$
+
+* A full, worked-out example of a second-order Taylor series approximation for a function of two variables can be found [here](https://mathinsight.org/taylor_polynomial_multivariable_examples).
 * 
+
+
 
 
