@@ -38,6 +38,12 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
 * Many regularization strategies can be interpreted as MAP Bayesian inference. This is covered in detail in the following [post](http://bjlkeng.github.io/posts/probabilistic-interpretation-of-regularization/).
   * $$L^{2}$$ regularization is equivalent to MAP with a Gaussian prior on the weights.
   * $$L^{1}$$ regularization is equivalent to MAP with an isotropic Laplace distribution as a prior \(after ignoring some terms that do not depend on the weights $$w$$\).
-* 
+  * Regularization is the process of introducing additional information in order to solve **ill-posed problems** or prevent overfitting. A trivial example is trying to fit a simple linear model to a dataset that only contains a single point. In this case, you can't estimate both the slope and the intercept \(you need at least two points\), so any MLE estimate \(which only uses the data\) will be ill-formed. Instead, if you provide some "additional information" \(i.e. prior information\), you can get a much more reasonable estimate.
+  * Again, in Bayesian inference, we're primarily concerned with the posterior: "the probability of the parameters given the data."
+  * The prior is something that we explicitly choose that is **not** based on the data. Even in cases where we don't know anything about the nature of the true data-generating process, we can choose a **weak prior**, which will only bias the result slightly from the MLE estimate.
+  * We can see the effect of introducing a normally distributed prior on each of the parameters $$\beta_{i}$$ in a linear regression model below.
+
+![](/assets/normally_distributed_prior.png)
+
 
 
