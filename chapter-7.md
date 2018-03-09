@@ -45,5 +45,16 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
 
 ![](/assets/normally_distributed_prior.png)
 
+* A list of various regularization strategies can be found in the following Wikipedia [article](https://en.wikipedia.org/wiki/Regularization_%28mathematics%29).
+* We can view the normal penalties described above as a form of constrained optimization.
+  * If we are using $$L^{2}$$ regularization, then the weights are constrained to lie in an $$L^{2}$$ ball.
+  * If we are using $$L^{1}$$ regularization, then the weights are constrained to lie in a region of limited $$L^{1}$$ norm.
+  * The hyperparameter $$\alpha$$ controls the size of the constraint region.
+* We can also use explicit constraints rather than penalties. An example of this is **projected gradient descent**. Penalties such as the weight decay strategies discussed above can cause non-convex optimization procedures to get stuck in local minima corresponding to small $$\theta$$.
+* Regularization can also be used to solve [underdetermined](https://en.wikipedia.org/wiki/Underdetermined_system) problems. An example of this is logistic regression applied to a problem where the classes are linearly separable. If a weight vector $$w$$ is able to achieve perfect classification, then $$2w$$ will also achieve perfect classification and higher likelihood.
+  * Usually, high-dimensional problems are underdetermined because the sample size is much smaller than the number of features. Therefore, some constraints are necessary in order to make the problem determined.
+  * Regularization makes the _intrinsic_ dimensionality of the problem small so that it remains solvable in the high-dimensional space.
+  * This process is explained in the following [post](https://www.quora.com/By-what-means-can-one-conduct-a-high-dimensional-regression-parameters-observations-other-than-regularization-LASSO-ridge-regression-etc).
+* 
 
 
