@@ -55,6 +55,11 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
   * Usually, high-dimensional problems are underdetermined because the sample size is much smaller than the number of features. Therefore, some constraints are necessary in order to make the problem determined.
   * Regularization makes the _intrinsic_ dimensionality of the problem small so that it remains solvable in the high-dimensional space.
   * This process is explained in the following [post](https://www.quora.com/By-what-means-can-one-conduct-a-high-dimensional-regression-parameters-observations-other-than-regularization-LASSO-ridge-regression-etc).
-* 
+* The best way to make a machine learning model generalize better is to train it on more data. One way to do this is through **data augmentation**, which typically involves applying some transformations to the input $$x$$.
+  * Injecting noise into the input of a neural network can also be seen as a form of data augmentation.
+  * Noise injection also works when the noise is applied to the hidden units, which can be seen as doing data augmentation at multiple levels of abstraction.
+  * **Dropout **can be viewed as a process of constructing new inputs by multiplying by noise.
+* Another way that noise has been used in the service of regularizing models is by adding it to the network weights, which encourages stability. This form of regularization encourages the parameters to go to regions of parameter space where small perturbations of the weights have a relatively small influence on the output. In other words, it pushes the model into regions where the model is relatively insensitive to small variations in the weights. The following blog [post](https://blog.evjang.com/2016/07/randomness-deep-learning.html?m=1) explains why randomness is important in deep learning.
+
 
 
