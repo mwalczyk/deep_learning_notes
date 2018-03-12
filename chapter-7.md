@@ -60,6 +60,9 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
   * Noise injection also works when the noise is applied to the hidden units, which can be seen as doing data augmentation at multiple levels of abstraction.
   * **Dropout **can be viewed as a process of constructing new inputs by multiplying by noise.
 * Another way that noise has been used in the service of regularizing models is by adding it to the network weights, which encourages stability. This form of regularization encourages the parameters to go to regions of parameter space where small perturbations of the weights have a relatively small influence on the output. In other words, it pushes the model into regions where the model is relatively insensitive to small variations in the weights. The following blog [post](https://blog.evjang.com/2016/07/randomness-deep-learning.html?m=1) explains why randomness is important in deep learning.
+* Noise can also be applied to the output targets. **Label smoothing **regularizes a model based on a softmax with $$k$$ output values by replacing the hard 0 and 1 classification targets with targets of $$\frac{\epsilon}{k - 1}$$ and $$1 - \epsilon$$, respectively. The standard cross-entropy loss may then be used with these soft targets.
+* **Semi-supervised learning** refers to learning a representation $$h = f(x)$$. The goal is to learn a representation so that examples from the same class have similar representations. A linear classifier in the new space may achieve better generalization in many cases. 
+* **Multitask learning **is a way to improve generalization by pooling the examples arising out of several tasks.
 
 
 
