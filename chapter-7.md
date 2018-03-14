@@ -62,7 +62,15 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
 * Another way that noise has been used in the service of regularizing models is by adding it to the network weights, which encourages stability. This form of regularization encourages the parameters to go to regions of parameter space where small perturbations of the weights have a relatively small influence on the output. In other words, it pushes the model into regions where the model is relatively insensitive to small variations in the weights. The following blog [post](https://blog.evjang.com/2016/07/randomness-deep-learning.html?m=1) explains why randomness is important in deep learning.
 * Noise can also be applied to the output targets. **Label smoothing **regularizes a model based on a softmax with $$k$$ output values by replacing the hard 0 and 1 classification targets with targets of $$\frac{\epsilon}{k - 1}$$ and $$1 - \epsilon$$, respectively. The standard cross-entropy loss may then be used with these soft targets.
 * **Semi-supervised learning** refers to learning a representation $$h = f(x)$$. The goal is to learn a representation so that examples from the same class have similar representations. A linear classifier in the new space may achieve better generalization in many cases. 
-* **Multitask learning **is a way to improve generalization by pooling the examples arising out of several tasks.
+* **Multitask learning **is a way to improve generalization by pooling the examples arising out of several tasks. From the point of view of deep learning, the underlying prior belief is the following: among the factors that explain the variations observed in the data associated with different tasks, some are shared across two or more tasks.
 
+![](/assets/multitask_learning.png)
+
+* When training large models with sufficient representational capacity to overfit a task, we often observe that the training error decreases steadily over time, but the validation error begins to rise again. To combat this, we can use a technique known as **early stopping**.
+  * Every time the error on the validation set improves, we store a copy of the model parameters. When the training algorithm terminates, we return these parameters rather than the latest parameters.
+  * The algorithm terminates when no parameters have improved upon the best recorded validation error for some pre-specified number of iterations.
+  * Early stopping can be used alone or in conjunction with other regularization strategies.
+  * Under certain conditions, it can be shown that early stopping and $$L^{2}$$ regularization are equivalent.
+* 
 
 
