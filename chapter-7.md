@@ -71,6 +71,13 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
   * The algorithm terminates when no parameters have improved upon the best recorded validation error for some pre-specified number of iterations.
   * Early stopping can be used alone or in conjunction with other regularization strategies.
   * Under certain conditions, it can be shown that early stopping and $$L^{2}$$ regularization are equivalent.
-* 
+  * In $$L^{2}$$ regularization, parameter values corresponding to directions of significant curvature \(of the objective function\) are regularized less than directions of less curvature. In the context of early stopping, this means that parameters that correspond to directions of significant curvature tend to learn _early_ relative to parameters corresponding to directions of less curvature.
+
+> Early stopping has the advantage over weight decay in that it automatically determines the correct amount of regularization while weight decay requires many training experiments with different values of its hyperparameter.
+
+* The regularization strategies discussed thus far work by adding constraints or penalties to the model parameters with respect to a fixed region or point. For example, $$L^{2}$$ regularization penalizes the model parameters for deviating from the fixed value of zero. Instead, we might want to ensure that certain parameters are _close_ to one another. This is known as **parameter sharing**.
+  * The most popular and extensive use of parameter sharing occurs in CNNs. This technique allows CNNs to be translation invariant. 
+  * Parameter sharing can also dramatically lower the number of unique model parameters.
+
 
 
