@@ -78,6 +78,15 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
 * The regularization strategies discussed thus far work by adding constraints or penalties to the model parameters with respect to a fixed region or point. For example, $$L^{2}$$ regularization penalizes the model parameters for deviating from the fixed value of zero. Instead, we might want to ensure that certain parameters are _close_ to one another. This is known as **parameter sharing**.
   * The most popular and extensive use of parameter sharing occurs in CNNs. This technique allows CNNs to be translation invariant. 
   * Parameter sharing can also dramatically lower the number of unique model parameters.
+* Weight decay acts by placing a penalty directly on the model parameters. Another strategy is to place a penalty on the activations of the hidden units, encouraging them to be sparse. 
+  * Note that this is _not_ the same as $$L^{1}$$ regularization, which induces a sparse _parametrization_ \(meaning that many of the weights become zero or close to zero\). 
+  * The difference is illustrated in the image below, where $$7.46$$ is an illustration of a sparsely parametrized linear regression model and $$7.47$$ is a linear regression model with a sparse _representation _$$h$$ of the data $$x$$.
+  * Representational regularization is achieved by the same sorts of mechanisms that we have used for parameter regularization.
+  * Other approaches obtain representational sparsity by placing a hard constraint on the activation values. **Orthogonal matching pursuit **\(OMP-k\) encodes an input $$x$$ with the representation $$h$$ that solves a constrained optimization problem, which is explained in the following [tutorial](http://korediantousman.staff.telkomuniversity.ac.id/files/2017/08/main-1.pdf). Essentially, the algorithm tries to find a representation wtih less than $$k$$ non-zero entries.
+
+![](/assets/sparse_representations.png)
+
+* **Bagging **\(bootstrap aggregating\) is a technique for reducing generalization error by instantiating and training several different models. At test time, all of the models vote on the output. This is an example of an **ensemble method**.
 
 
 
