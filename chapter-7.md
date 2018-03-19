@@ -86,7 +86,21 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
 
 ![](/assets/sparse_representations.png)
 
-* **Bagging **\(bootstrap aggregating\) is a technique for reducing generalization error by instantiating and training several different models. At test time, all of the models vote on the output. This is an example of an **ensemble method**.
+* **Bagging **\(bootstrap aggregating\) is a technique for reducing generalization error by instantiating and training several different models. At test time, all of the models vote on the output. This is an example of an **ensemble method**. 
+  * It can be shown that, on average, an ensemble will perform at least as well as any of its members, and if the members make independent errors, the ensemble will perform significantly better than its members.
+  * Bagging involves constructing $$k$$ different datasets. Each dataset has the same number of examples as the original dataset, but each dataset is constructed by sampling with replacement from the original dataset. This means that, with high probability, each dataset will be missing some of the examples from the original dataset and will contain several duplicated examples.
+
+> Any machine learning algorithm can benefit substantially from model averaging at the price of increased computation and memory.
+
+* **Dropout** can be thought of as a method of making bagging practical for ensembles of very many large neural networks. Specifically, dropout trains the ensemble consisting of all sub-networks that can be formed by removing non-output units from an underlying base network.
+  * Each time we load a minibatch, we randomly sample a different binary mask to apply to all of the input and hidden units in the network. The mask for each unit is sampled independently from all of the others.
+  * To make a prediction, a bagged ensemble must accumulate votes from all of its members. Each model $$i$$ produces a probability distribution $$p^{(i)}(y\mid x)$$. The prediction of the ensemble is given by the arithmetic mean of all of these distributions.
+  * In the case of dropout, each sub-model defined by a mask vector $$\mu$$ defines a probability distribution $$p(y\mid x, \mu)$$. Because the arithmetic mean over all masks includes an exponential number of terms, it is intractable to evaluate except when the structure of the model permits some form of simplification.
+  * Instead, we can approximate the inference with sampling \(10 to 20 different masks\) by averaging together the output from many masks.
+  * An even better approach requires only a single forward pass. To do so, we use the [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) rather than the arithmetic mean of the ensemble members' predicted distributions.
+    * The geometric mean is defined as the $$n$$-th root of the product of $$n$$ numbers.
+    * A geometric mean is often used when comparing items with vastly different scales. For example, it can be used to give a meaningful "average" to compare two companies which are rated from 0 to 5 for their environmental sustainability and 0 to 100 for their financial viability. If an arithmetic mean were used, the "financial viability" term would be given more weight simply because its numeric range is larger.
+  * A key insight is that we can approximate the ensemble with a single model: the model with all units but with the weights going out of unit $$i$$ multiplied by the probability of including unit $$i$$.
 
 
 
