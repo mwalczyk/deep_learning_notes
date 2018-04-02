@@ -101,6 +101,11 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
     * The geometric mean is defined as the $$n$$-th root of the product of $$n$$ numbers.
     * A geometric mean is often used when comparing items with vastly different scales. For example, it can be used to give a meaningful "average" to compare two companies which are rated from 0 to 5 for their environmental sustainability and 0 to 100 for their financial viability. If an arithmetic mean were used, the "financial viability" term would be given more weight simply because its numeric range is larger.
   * A key insight is that we can approximate the ensemble with a single model: the model with all units but with the weights going out of unit $$i$$ multiplied by the probability of including unit $$i$$.
+  * Dropout has several advantages.
+    * It is very computationally cheap.
+    * It does not significantly limit the type of model or training procedure that can be used. Many other regularization strategies of comparable power impose more severe restrictions on the architecture of the model.
+  * One of the other key insights of dropout is that training a network with stochastic behavior and making predictions by averaging over multiple stochastic decisions implements a form of bagging with parameter sharing. We can think of any form of modification parametrized by a vector $$\mu$$ as training an ensemble consisting of $$p(y\mid x, \mu)$$ for all possible values of $$\mu$$. In fact, it has been shown that multiplying the weights by values drawn from a normal distribution can outperform dropout based on binary masks \(see section 10 of the follow [paper](http://jmlr.org/papers/volume15/srivastava14a.old/srivastava14a.pdf)\).
+  * 
 
 
 
