@@ -110,9 +110,19 @@ $$f(x) = f(a) + [(x - a)$$$$f(x) = f(a) + [(x - a)\cdot \bigtriangledown f(a)] +
 
 * **Adversarial training** discourages highly sensitive, locally linear behavior by encouraging the network to be locally constant in the neighborhood around the training data. This can be seen as a way of explicitly introducing a local constancy prior into supervised neural networks. The assumption is that different classes usually lie on disconnected manifolds, and a small perturbation should not be able to jump from one class manifold to another class manifold.
 * Many machine learning algorithms aim to overcome the curse of dimensionality by assuming that the data lies near a low-dimensional manifold \(as described in chapter 5\). The **tangent prop **algorithm trains a classifier with an extra penalty to make each output of the neural network locally invariant to known factors of variation. These factors of variation correspond to movement along the manifold near which examples of the same class concentrate. Local invariance is achieved by requiring the gradient of the network's output with respect to its input to be orthogonal to the known manifold tangent vectors $$v^{(i)}$$ at $$x$$.
-  * Tangent propagation is closely related to **dataset augmentation**. In both cases, the user of the algorithm encodes his or her prior knowledge of the task by specifying a set of transformations that should not alter the output of the network.
+  * Tangent propagation is closely related to **dataset augmentation**, which is covered in the following blog [post](https://machinelearningmastery.com/image-augmentation-deep-learning-keras/). In both cases, the user of the algorithm encodes his or her prior knowledge of the task by specifying a set of transformations that should not alter the output of the network.
   * The difference is that in the case of dataset augmentation, the network is explicitly trained to correctly classify distinct inputs that were created by applying more than an infinitesimal amount of these transformations. 
   * Tangent propagation does not require explicitly visiting a new input point. Instead, it analytically regularizes the model to resist perturbation in the directions corresponding to the specified transformation.
+* Tangent propagation and dataset augmentation using manually specified transformations both require that the model be invariant to certain specified directions of change in the input. **Double backprop **and adversarial training both require that the model should be invariant to _all _directions of change in the input as long as the change is small.
+
+> Just as dataset augmentation is the non-infinitesimal version of tangent propagation, adversarial training is the non-infinitesimal version of double backprop.
+
+* The **manifold tangent classifier **eliminates the need to know the tangent vectors a priori. These estimated tangent vectors go beyond the classical invariants that arise out of the geometry of images \(such as translations, rotations, and scaling\) and include factors that must be learned because they are object-specific \(such as moving body parts\). 
+  * Autoencoders can estimate the manifold tangent vectors.
+
+![](/assets/manifold_classifier.png)
+
+
 
 
 
