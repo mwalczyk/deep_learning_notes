@@ -1,16 +1,17 @@
 # Optimization for Training Deep Models
 
-* The goal of a machine learning algorithm is to reduce the expected generalization error or **risk**. Here, the expectation is taken over the true underlying distribution $$p_{data}$$. If we knew the true distribution $$p_{data}(x, y)$$, risk minimization would be an optimization task solvable by an optimization algorithm. When we do _not _know $$p_{data}(x, y)$$ but only have a training set of samples, we have a machine learning problem.
+* The goal of a machine learning algorithm is to reduce the expected generalization error or **risk**. Here, the expectation is taken over the true underlying distribution $$p_{data}$$. If we knew the true distribution $$p_{data}(x, y)$$, risk minimization would be an optimization task solvable by an optimization algorithm. When we do _not \_know $$p_{data}\(x, y\)$$ but only have a training set of samples, we have a machine learning problem.
 * The simplest way to convert a machine learning problem back into an optimization problem is to minimize the expected loss on the training set. This **empirical risk **can be written as $$\frac{1}{m}\sum_{i=1}^{m}L(f(x^{(i)};\theta), y^{(i)})$$. This process is known as **empirical risk minimization**. However, it has several problems.
   * Empirical risk minimization is prone to overfitting. 
   * In many cases, empirical risk minimization is not feasible, since many useful loss functions have no useful derivatives or the derivative is either zero or undefined everywhere. This makes it difficult \(or impossible\) to optimize with gradient descent.
   * The two problems above mean that we rarely use empirical risk minimization. Instead, we use a slightly different approach in which the quantity that we actually optimize is even more different from the quantity that we truly want to optimize. For example, instead of using a [0-1 loss](https://stats.stackexchange.com/questions/284028/0-1-loss-function-explanation), we might use the negative log-likelihood of the correct class.
   * This is known as a **surrogate loss function**.
+* The connection between maximum likelihood estimation and neural networks is explained [here](https://stats.stackexchange.com/questions/297749/how-meaningful-is-the-connection-between-mle-and-cross-entropy-in-deep-learning).
 * Optimization algorithms that use the entire training set are called **batch **gradient methods. Optimization algorithms that use only a single example at a time are called **stochastic **methods. Most algorithms fall somewhere in between. These are called **minibatch **methods.
-  * It is crucial that the minibatches be selected randomly.
-  * 
-
-
+  * Larger batch sizes provide a more accurate estimate of the gradient but with less than linear returns. This follows from the fact that the standard error of the mean estimated from $$n$$ samples is given by $$\frac{\sigma}{\sqrt{n}}$$, where $$\sigma$$ is the true standard deviation of the value of the samples. The denominator shows that there are less than linear returns to using more examples to estimate the gradient. For example, we can compare two hypothetical estimates of the gradient: one based on 100 examples and another based on 10,000 examples. The latter requires 100 times more computation than the former but reduces the standard error of the mean only by a factor of 10. 
+  * The standard error of the mean is explained in detail in the following [article](http://www.biostathandbook.com/standarderror.html).
+  * It is crucial that the minibatches be selected randomly. Ideally, two subsequent minibatches of examples should be independent of each other. It is often necessarily to shuffle the training set before selecting minibatches.
+  * Minibatch stochastic gradient descent follows the gradient of the true generalization error as long as no examples are repeated. Most implementations shuffle the dataset once and then pass through it multiple times. On the first pass, each minibatch is used to compute an unbiased estimate of the true generalization error. On the second pass, the estimate becomes biased because it is formed by resampling values that have already been used.
 
 
 
