@@ -12,6 +12,9 @@
   * The standard error of the mean is explained in detail in the following [article](http://www.biostathandbook.com/standarderror.html).
   * It is crucial that the minibatches be selected randomly. Ideally, two subsequent minibatches of examples should be independent of each other. It is often necessarily to shuffle the training set before selecting minibatches.
   * Minibatch stochastic gradient descent follows the gradient of the true generalization error as long as no examples are repeated. Most implementations shuffle the dataset once and then pass through it multiple times. On the first pass, each minibatch is used to compute an unbiased estimate of the true generalization error. On the second pass, the estimate becomes biased because it is formed by resampling values that have already been used.
+  * The reason why the expected value of the gradient of a minibatch in SGD is equal to the true empirical gradient is explained in the following Quora [post](https://www.quora.com/How-does-one-show-that-the-expected-value-of-a-mini-batch-in-SGD-is-equal-to-the-true-empirical-gradient).
+* There are several large challenges in neural network optimization.
+  * Often times, the Hessian matrix is ill-conditioned, which is explained in the following Quora [post](https://www.quora.com/What-does-it-mean-to-have-a-poorly-conditioned-Hessian-matrix). Essentially, a poorly conditioned Hessian matrix causes problems for first-order optimization methods like SGD, which will need to follow a very zigzag path to the minimum.
 
 
 
