@@ -1,6 +1,6 @@
 # Optimization for Training Deep Models
 
-* The goal of a machine learning algorithm is to reduce the expected generalization error or **risk**. Here, the expectation is taken over the true underlying distribution $$p_{data}$$. If we knew the true distribution $$p_{data}(x, y)$$, risk minimization would be an optimization task solvable by an optimization algorithm. When we do _not \_know $$p_{data}\(x, y\)$$ but only have a training set of samples, we have a machine learning problem.
+* The goal of a machine learning algorithm is to reduce the expected generalization error or **risk**. Here, the expectation is taken over the true underlying distribution $$p_{data}$$. If we knew the true distribution $$p_{data}(x, y)$$, risk minimization would be an optimization task solvable by an optimization algorithm. When we do not know_ _$$p_{data}(x, y)$$ but only have a training set of samples, we have a machine learning problem.
 * The simplest way to convert a machine learning problem back into an optimization problem is to minimize the expected loss on the training set. This **empirical risk **can be written as $$\frac{1}{m}\sum_{i=1}^{m}L(f(x^{(i)};\theta), y^{(i)})$$. This process is known as **empirical risk minimization**. However, it has several problems.
   * Empirical risk minimization is prone to overfitting. 
   * In many cases, empirical risk minimization is not feasible, since many useful loss functions have no useful derivatives or the derivative is either zero or undefined everywhere. This makes it difficult \(or impossible\) to optimize with gradient descent.
@@ -15,6 +15,10 @@
   * The reason why the expected value of the gradient of a minibatch in SGD is equal to the true empirical gradient is explained in the following Quora [post](https://www.quora.com/How-does-one-show-that-the-expected-value-of-a-mini-batch-in-SGD-is-equal-to-the-true-empirical-gradient).
 * There are several large challenges in neural network optimization.
   * Often times, the Hessian matrix is ill-conditioned, which is explained in the following Quora [post](https://www.quora.com/What-does-it-mean-to-have-a-poorly-conditioned-Hessian-matrix). Essentially, a poorly conditioned Hessian matrix causes problems for first-order optimization methods like SGD, which will need to follow a very zigzag path to the minimum.
+    * Ill conditioned and well conditioned matrices are discussed in the following [article](https://ece.uwaterloo.ca/~dwharder/NumericalAnalysis/04LinearAlgebra/illconditioned/). Basically, an ill conditioned system $$Mx = b$$ may be very sensitive to small changes in either the matrix $$M$$ or the vector $$b$$. This means that a relatively small change in either can result in a significant change in the solution $$x$$. This is shown in the image below.
+  * With non-convex functions such as neural networks, it is possible to have many local minima due to [weight space symmetry](https://arxiv.org/pdf/1511.01029.pdf). This is known as the **model identifiability problem**. Another example is, in any rectified linear or maxout network, we can obtain an equivalent model by scaling all of the incoming weights and biases of a unit by $$\alpha$$ if we also scale all of its outgoing weights by $$\frac{1}{\alpha}$$.
+
+ ![](/assets/ill_conditioned_matrices.png)
 
 
 
