@@ -33,6 +33,10 @@
 
 > The learning rate may be chosen by trial and error, but it is usually best to choose it by monitoring learning curves that plot the objective function as a function of time.
 
-* 
+* To study the convergence rate of an optimization algorithm, it is common to measure the **excess error **$$J(\theta) - \min_{\theta}J(\theta)$$, which is the amount by which the current cost function exceeds the minimum possible cost. When SGD is applied to a convex problem, the excess error is $$O(\frac{1}{\sqrt{k}})$$ after $$k$$ iterations. Related to excess error are the concepts of Cramer-Rao Bound and Fischer Information, which are explained in the following [post](https://stats.stackexchange.com/questions/10578/intuitive-explanation-of-fisher-information-and-cramer-rao-bound).
+* The **momentum **algorithm accumulates an exponentially decaying moving average of past gradients and continues to move in their direction. Formally, momentum introduces a variable $$v$$ that plays the role of velocity. A hyperparameter $$\alpha\in [0, 1)$$ determines how quickly the contributions of previous gradients exponentially decay. The algorithm is outlined below.
+
+![](/assets/momentum_pseudocode.png)
+
 
 
