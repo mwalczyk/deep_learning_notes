@@ -14,7 +14,6 @@
   * Minibatch stochastic gradient descent follows the gradient of the true generalization error as long as no examples are repeated. Most implementations shuffle the dataset once and then pass through it multiple times. On the first pass, each minibatch is used to compute an unbiased estimate of the true generalization error. On the second pass, the estimate becomes biased because it is formed by resampling values that have already been used.
   * The reason why the expected value of the gradient of a minibatch in SGD is equal to the true empirical gradient is explained in the following Quora [post](https://www.quora.com/How-does-one-show-that-the-expected-value-of-a-mini-batch-in-SGD-is-equal-to-the-true-empirical-gradient).
 * There are several large challenges in neural network optimization.
-
   * Often times, the Hessian matrix is ill-conditioned, which is explained in the following Quora [post](https://www.quora.com/What-does-it-mean-to-have-a-poorly-conditioned-Hessian-matrix). Essentially, a poorly conditioned Hessian matrix causes problems for first-order optimization methods like SGD, which will need to follow a very zigzag path to the minimum.
     * Ill conditioned and well conditioned matrices are discussed in the following [article](https://ece.uwaterloo.ca/~dwharder/NumericalAnalysis/04LinearAlgebra/illconditioned/). Basically, an ill conditioned system $$Mx = b$$ may be very sensitive to small changes in either the matrix $$M$$ or the vector $$b$$. This means that a relatively small change in either can result in a significant change in the solution $$x$$. This is shown in the image below.
   * With non-convex functions such as neural networks, it is possible to have many local minima due to [weight space symmetry](https://arxiv.org/pdf/1511.01029.pdf). This is known as the **model identifiability problem**. Another example is, in any rectified linear or maxout network, we can obtain an equivalent model by scaling all of the incoming weights and biases of a unit by $$\alpha$$ if we also scale all of its outgoing weights by $$\frac{1}{\alpha}$$. 
@@ -25,9 +24,15 @@
     * The gradient can often become very small near a saddle point, but empirically, SGD seems to be able to escape these flat regions in many cases.
     * However, for Newton's method, which is designed to solve for a point where the gradient is zero, saddle points clearly constitute a problem. This explains why second-order methods have no succeeded in replacing gradient descent for neural network training.
   * Neural networks with many layers often have extremely steep regions resembling cliffs, which result from the multiplication of several large weights together. Fortunately, this can be avoided by using **gradient clipping**. Recurrent neural networks often suffer from this problem.
-  * Repeated application of the same parameters can also give rise to difficulties. For example, suppose that a computational graph contains a path that consists of repeatedly multiplying by a matrix $$W$$. If $$W$$ has an eigendecomposition, it is straightforward to see that $$W^{t} = V diag(\lambda)^{t}V^{-1}$$. Any eigenvalues $$\lambda_{i}$$ that are not near an absolute value of 1 will either explode if they are greater than 1 or vanish if they are less than 1.
+  * Repeated application of the same parameters can also give rise to difficulties. For example, suppose that a computational graph contains a path that consists of repeatedly multiplying by a matrix $$W$$. If $$W$$ has an eigendecomposition, it is straightforward to see that $$W^{t} = V diag(\lambda)^{t}V^{-1}$$. Any eigenvalues $$\lambda_{i}$$ that are not near an absolute value of 1 will either explode if they are greater than 1 or vanish if they are less than 1. Gradients through such a graph are also scaled according to $$diag(\lambda)^{t}$$. This is known as the **vanishing / exploding gradient problem**.
+    * This procedure is very similar to the [power method](https://en.wikipedia.org/wiki/Power_iteration) algorithm, which is used to find the largest eigenvalue of a matrix via repeated multiplication.
 
-  ![](/assets/ill_conditioned_matrices.png)
+![](/assets/ill_conditioned_matrices.png)
 
+* In practice, it is necessary to gradually decrease the learning rate over time. This is because the SGD gradient estimator introduces a source of noise \(the random sampling of minbatches\) that does not vanish even when we arrive at a minimum. Usually, we decay the learning rate linearly until iteration $$\tau$$ as follows: $$\epsilon_{k} = (1 - \alpha)\epsilon_{0} + \alpha\epsilon_{\tau}$$, where $$\alpha = \frac{k}{\tau}$$.
+
+> The learning rate may be chosen by trial and error, but it is usually best to choose it by monitoring learning curves that plot the objective function as a function of time.
+
+* 
 
 
